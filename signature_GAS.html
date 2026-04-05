@@ -39,7 +39,7 @@
  try {
  const response = await fetch(GAS_URL, {
  method: 'POST',
- mode: 'no-cors',
+ mode: 'cors',
  headers: { 'Content-Type': 'application/json' },
  body: JSON.stringify({ name: userName, image: dataURL })
  });
