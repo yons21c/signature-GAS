@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>전자 서명 패드 (구글 폼 연동형)</title>
+    <title>전자 서명 패드</title>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 20px; max-width: 400px; background-color: #f4f4f9; }
         .box { background: white; border: 1px solid #ddd; padding: 20px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 100%; box-sizing: border-box; }
@@ -34,7 +34,7 @@
 
         function clearSignature() { signaturePad.clear(); }
 
-        async function submitSignature() {
+        function submitSignature() {
             if (signaturePad.isEmpty()) return alert("서명을 먼저 입력해주세요.");
             const userName = document.getElementById('userName').value;
             const userPhone = document.getElementById('userPhone').value;
@@ -45,7 +45,7 @@
             // 폼 제출 방식 (CORS 문제 회피)
             const form = document.createElement('form');
             form.method = 'POST';
-            // !!! 배포하신 GAS 주소를 입력하세요 !!!
+            // [중요] 아래 URL을 배포된 최신 웹 앱 URL로 변경하세요!
             form.action = 'https://script.google.com/macros/s/AKfycbwKJB_gSIaC_eM8S1Aqz9JPFk-CdkTEAeO6YFmPBTEZltWtV-Z7qTcS4eum1soJ-qKmAQ/exec';
             
             const hiddenInput = document.createElement('input');
@@ -58,6 +58,7 @@
             form.submit();
         }
         
+        // 캔버스 크기 대응
         function resizeCanvas() {
             const ratio = Math.max(window.devicePixelRatio || 1, 1);
             canvas.width = canvas.offsetWidth * ratio;
